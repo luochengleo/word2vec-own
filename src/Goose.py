@@ -28,14 +28,17 @@ while True:
         continue
     if line.strip().lower() == '</doc>':
         inpool = False
-        article = g.extract(raw_html=htmlstr.encode('utf8'))
-        outfile.write(article.cleaned_text[:].replace('\n',''))
-        print filename,count
-        # except:
-        #     print 'Exception'
-        #     pass
-        #     continue
-        if inpool == True:
-            htmlstr += line.decode('gbk','ignore')
-        else:
+        try:
+            article = g.extract(raw_html=htmlstr.encode('utf8'))
+            outfile.write(article.cleaned_text[:].replace('\n','')+'\n')
+            print filename,count
+        except:
+            print 'Exception'
             pass
+            continue
+    if inpool == True:
+        htmlstr += line.decode('gbk','ignore')
+    else:
+        pass
+    if not line:
+        break
