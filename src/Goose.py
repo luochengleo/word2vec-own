@@ -23,15 +23,17 @@ while True:
     count +=1
     line = fin.readline()
     if line.strip().lower() == '<doc>':
-        print 1
+        print 1,count
         inpool = True
         htmlstr=''
         continue
     if line.strip().lower() == '</doc>':
-        print 2
+        print 2,count
         inpool = False
         try:
+            print 'begin extracting...'
             article = g.extract(raw_html=htmlstr.encode('utf8'))
+            print 'finish extracting...,writing to file'
             outfile.write(article.cleaned_text[:].replace('\n','')+'\n')
             print filename,count
         except:
@@ -39,9 +41,9 @@ while True:
             pass
             continue
     if inpool == True:
-        print 3
+        print 3,count
         htmlstr += line.decode('gbk','ignore')
 
     if not line:
-        print 4
+        print 4,count
         break
