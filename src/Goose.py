@@ -31,7 +31,7 @@ while True:
         try:
             article = g.extract(raw_html=htmlstr.encode('utf8'))
             outfile.write(article.cleaned_text[:].replace('\n',''))
-            print f,count
+            print filename,count
         except:
             print 'Exception'
             pass
