@@ -14,7 +14,7 @@ import os
 rootpath = '../data/raw'
 hparser = HTMLParser()
 files = os.listdir(rootpath)
-outfile = open('../data/'+f+'.raw.txt','w')
+outfile = open('../data/'+filename+'.raw.txt','w')
 fin = open(rootpath+'/'+filename)
 htmlstr = ''
 inpool = False
