@@ -23,10 +23,12 @@ while True:
     count +=1
     line = fin.readline()
     if line.strip().lower() == '<doc>':
+        print 1
         inpool = True
         htmlstr=''
         continue
     if line.strip().lower() == '</doc>':
+        print 2
         inpool = False
         try:
             article = g.extract(raw_html=htmlstr.encode('utf8'))
@@ -37,8 +39,9 @@ while True:
             pass
             continue
     if inpool == True:
+        print 3
         htmlstr += line.decode('gbk','ignore')
-    else:
-        pass
+
     if not line:
+        print 4
         break
